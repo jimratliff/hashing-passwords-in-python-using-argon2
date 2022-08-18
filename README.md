@@ -4,7 +4,7 @@
 * [Using the argon2-cffi package to implement Argon2 in Python](sdfsdfsdfsdf)
     * [Installation](sfsdfsdfsdf)
     * [Using the `PasswordHasher` class to hash, verify, and update older hashes](sdfsdfsdf)
-        * [Instantiate `PasswordHasher`] (sdfsdfsdf)
+        * [Instantiate `PasswordHasher`](sdfsdfsdf)
         * [The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database](sdfsfsdfsdfsdf)
         * [At login time, verify whether the newly entered password string matches the originally entered password string](sdfsfsdfsdf)
         * [Progressively upgrade hash quality of previously hashed passwords](sdfsdfsdfsdf)

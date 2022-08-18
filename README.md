@@ -1,9 +1,12 @@
 # Hashing passwords (and verifying them) in Python using the Argon2 algorithm
 
-* [The Algon2 algorithm: the best for password hashing](sdfsdfsdfsdf)
-* [Using the argon2-cffi package](sdfsdfsdfsdf)
+* [The Argon2 algorithm: the best for password hashing](sdfsdfsdfsdf)
+* [Using the argon2-cffi package to implement Argon2 in Python](sdfsdfsdfsdf)
+    * [Installation](sfsdfsdfsdf)
+    * [Using the `PasswordHasher` class to hash, verify, and update older hashes](sdfsdfsdf)
+        * [The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database](sdfsfsdfsdfsdf)
 
-## The Algon2 algorithm: the best for password hashing
+## The Argon2 algorithm: the best for password hashing
 This repository demonstrates how to hash (and then verify) a password in Python using the
 [Argon2 algorithm](https://github.com/P-H-C/phc-winner-argon2/blob/master/argon2-specs.pdf).
 
@@ -15,7 +18,7 @@ More specifically, of the three variants of Argon2 (Argon2i, Argon2d, and Argon2
 Recommendations for implementers of Argon2 were codified in September 2021 in [RFC 9106](https://www.rfc-editor.org/rfc/rfc9106.html), representing the consensus of the Crypto Forum Research Group (CFRG) in the Internet Research Task Force (IRTF). The RFC characterizes Argon2id as the “primary variant” and states that:
 >Argon2id __MUST__ be supported by any implementation of this document, whereas Argon2d and Argon2i __MAY__ be supported.
 
-## Using the argon2-cffi package
+## Using the argon2-cffi package to implement Argon2 in Python
 ### Installation
 This repository accesses the Argon2 algorithm via the `argon2-cffi` Python package ([PyPI](https://pypi.org/project/argon2-cffi/), [GitHub](https://github.com/hynek/argon2-cffi), [Read the Docs](https://argon2-cffi.readthedocs.io/en/latest/index.html)) to provide the Argon2 algorithm.
 

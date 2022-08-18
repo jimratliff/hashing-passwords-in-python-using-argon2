@@ -1,15 +1,15 @@
 # Hashing passwords (and verifying them) in Python using the Argon2 algorithm
 
-* [The Argon2 algorithm: the best for password hashing](sdfsdfsdfsdf)
-* [Using the argon2-cffi package to implement Argon2 in Python](sdfsdfsdfsdf)
-    * [Installation](sfsdfsdfsdf)
-    * [Using the `PasswordHasher` class to hash, verify, and update older hashes](sdfsdfsdf)
-        * [Instantiate `PasswordHasher`](sdfsdfsdf)
-        * [The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database](sdfsfsdfsdfsdf)
-        * [At login time, verify whether the newly entered password string matches the originally entered password string](sdfsfsdfsdf)
-        * [Progressively upgrade hash quality of previously hashed passwords](sdfsdfsdfsdf)
-    * [Choosing parameters](sdfsdfsdfsd)
-* [Transcript from running this program with example password](sfdsdfsdfsdfsdf)
+* [The Argon2 algorithm: the best for password hashing](#the-argon2-algorithm-the-best-for-password-hashing)
+* [Using the argon2-cffi package to implement Argon2 in Python](#using-the-argon2-cffi-package-to-implement-argon2-in-python)
+    * [Installation](#installation)
+    * [Using the `PasswordHasher` class to hash, verify, and update older hashes](#using-the-passwordhasher-class-to-hash-verify-and-update-older-hashes)
+        * [Instantiate `PasswordHasher`](#instantiate-passwordhasher)
+        * [The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database](#the-initial-hashing-converting-a-new-user-supplied-password-string-into-an-hashed-string-including-encoded-metadata-to-store-in-the-database)
+        * [At login time, verify whether the newly entered password string matches the originally entered password string](#at-login-time-verify-whether-the-newly-entered-password-string-matches-the-originally-entered-password-string)
+        * [Progressively upgrade hash quality of previously hashed passwords](#progressively-upgrade-hash-quality-of-previously-hashed-passwords)
+    * [Choosing parameters](#choosing-parameters)
+* [Transcript from running this program with example password](#transcript-from-running-this-program-with-example-password)
 
 ## The Argon2 algorithm: the best for password hashing
 This repository demonstrates how to hash (and then verify) a password in Python using the

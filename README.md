@@ -116,6 +116,8 @@ There are two other exceptions (`VerificationError` and `InvalidHash`) that coul
 The third user-facing method of the `PasswordHasher` class is `check_needs_rehash()`. That method’s docstring explains:
 > Whenever your *Argon2* parameters -- or *argon2-cffi*'s defaults! -- change, you should rehash your passwords at the next opportunity. The common approach is to do that whenever a user logs in, since that should be the only time when you have access to the cleartext password.
 
+(See also [§ Upgrading Legacy Hashes](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#upgrading-legacy-hashes) of OWASP’s Password Storage cheatsheet for a discussion of this same principle. The cheatsheet, however, addresses the case where the legacy hashes are from older algorithms, e.g., MD5. Here, the `check_needs_rehash()` addresses only situations in which all hashes are created by Argon2, but some hashes may be older than others and were hashed under less-exacting parameters.)
+
 The `check_needs_rehash()` method checks whether the set of parameters specified in one metadata-encoded password hash is the set of parameters specified in another metadata-encoded password hash.
 
 The procedure during a login event would be:

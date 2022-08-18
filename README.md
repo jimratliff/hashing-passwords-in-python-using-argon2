@@ -4,6 +4,7 @@
 * [Using the argon2-cffi package to implement Argon2 in Python](sdfsdfsdfsdf)
     * [Installation](sfsdfsdfsdf)
     * [Using the `PasswordHasher` class to hash, verify, and update older hashes](sdfsdfsdf)
+        * [Instantiate `PasswordHasher`] (sdfsdfsdf)
         * [The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database](sdfsfsdfsdfsdf)
         * [At login time, verify whether the newly entered password string matches the originally entered password string](sdfsfsdfsdf)
         * [Progressively upgrade hash quality of previously hashed passwords](sdfsdfsdfsdf)
@@ -35,6 +36,7 @@ pip install argon2-cffi
 If you need more-specialized information on installation, particularly if you run into any obstacles, see [§ Installation](https://argon2-cffi.readthedocs.io/en/latest/installation.html#installation) in the argon2-cffi docs.
 
 ### Using the `PasswordHasher` class to hash, verify, and update older hashes
+#### Instantiate `PasswordHasher`
 `argon2-cffi` defines the high-level class `PasswordHasher` to (a) in the user-registration use case, hash passwords with sensible defaults and (b) in the login use case, verify them. Additionally, but much less centrally, `PasswordHasher` can  check, every time a user logs in, whether the password hash should be transparently upgraded to reflect technological changes. (This functionality is implemented as a class [in order that the hashing parameters need be verified only once](https://github.com/hynek/argon2-cffi/blob/42282cd88c74197935ec6444c6d2f9497b3b03b3/src/argon2/_password_hasher.py#L38-L40).)
 
 [By default](https://github.com/hynek/argon2-cffi/blob/42282cd88c74197935ec6444c6d2f9497b3b03b3/src/argon2/_password_hasher.py#L34), `PasswordHasher` (a) uses the `id` variant of Argon2 and (b) uses a random salt.

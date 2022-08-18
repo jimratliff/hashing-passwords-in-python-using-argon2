@@ -5,6 +5,10 @@
     * [Installation](sfsdfsdfsdf)
     * [Using the `PasswordHasher` class to hash, verify, and update older hashes](sdfsdfsdf)
         * [The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database](sdfsfsdfsdfsdf)
+        * [At login time, verify whether the newly entered password string matches the originally entered password string](sdfsfsdfsdf)
+        * [Progressively upgrade hash quality of previously hashed passwords](sdfsdfsdfsdf)
+    * [Choosing parameters](sdfsdfsdfsd)
+* [Transcript from running this program with example password](sfdsdfsdfsdfsdf)
 
 ## The Argon2 algorithm: the best for password hashing
 This repository demonstrates how to hash (and then verify) a password in Python using the

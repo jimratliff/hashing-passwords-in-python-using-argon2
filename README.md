@@ -1,4 +1,8 @@
 # Hashing passwords (and verifying them) in Python using the Argon2 algorithm
+
+* [The Algon2 algorithm: the best for password hashing](sdfsdfsdfsdf)
+* [Using the argon2-cffi package](sdfsdfsdfsdf)
+
 ## The Algon2 algorithm: the best for password hashing
 This repository demonstrates how to hash (and then verify) a password in Python using the
 [Argon2 algorithm](https://github.com/P-H-C/phc-winner-argon2/blob/master/argon2-specs.pdf).
@@ -12,6 +16,7 @@ Recommendations for implementers of Argon2 were codified in September 2021 in [R
 >Argon2id __MUST__ be supported by any implementation of this document, whereas Argon2d and Argon2i __MAY__ be supported.
 
 ## Using the argon2-cffi package
+### Installation
 This repository accesses the Argon2 algorithm via the `argon2-cffi` Python package ([PyPI](https://pypi.org/project/argon2-cffi/), [GitHub](https://github.com/hynek/argon2-cffi), [Read the Docs](https://argon2-cffi.readthedocs.io/en/latest/index.html)) to provide the Argon2 algorithm.
 
 To install:
@@ -22,7 +27,7 @@ pip install argon2-cffi
 
 If you need more-specialized information on installation, particularly if you run into any obstacles, see [§ Installation](https://argon2-cffi.readthedocs.io/en/latest/installation.html#installation) in the argon2-cffi docs.
 
-## Using `argon2-cffi`
+### Using the `PasswordHasher` class to hash, verify, and update older hashes
 `argon2-cffi` defines the high-level class `PasswordHasher` to (a) in the user-registration use case, hash passwords with sensible defaults and (b) in the login use case, verify them. Additionally, but much less centrally, `PasswordHasher` can  check, every time a user logs in, whether the password hash should be transparently upgraded to reflect technological changes. (This functionality is implemented as a class [in order that the hashing parameters need be verified only once](https://github.com/hynek/argon2-cffi/blob/42282cd88c74197935ec6444c6d2f9497b3b03b3/src/argon2/_password_hasher.py#L38-L40).)
 
 [By default](https://github.com/hynek/argon2-cffi/blob/42282cd88c74197935ec6444c6d2f9497b3b03b3/src/argon2/_password_hasher.py#L34), `PasswordHasher` (a) uses the `id` variant of Argon2 and (b) uses a random salt.
@@ -37,7 +42,7 @@ This class has [three user-facing methods](https://github.com/hynek/argon2-cffi/
 * `verify()`
 * `check_needs_rehash()`
 
-### The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database
+#### The initial hashing: Converting a new user-supplied password string into an hashed string (including encoded metadata) to store in the database
 
 During the registration of a new user, as well as any time a user’s password is reset, your app will receive from the user a string with the new password (denoted here `incoming_password_string`). Using the above-instantiated `password_hasher` object of the `PasswordHasher` class, this user-supplied string can be converted into a string that can be securely saved in the user database by:
 ```
@@ -74,7 +79,7 @@ This is the information, at the later password-verification stage, that will be 
 
 Between the fourth and fifth occurrences of `$` (i.e., beginning immediately after `p=4$`) is a B64 encoding of the salt. The string immediately after the last `$` is the password hash itself (encoded in B64). (See [PHC string format](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md).)
 
-### At login time, verify whether the newly entered password string matches the originally entered password string
+#### At login time, verify whether the newly entered password string matches the originally entered password string
 Now we move to the login stage, where the user has supplied a username or email address to indicate which user she is, or purports to be, and also enters a string into the password field (denoted here by `string_to_compare`) to try to prove that she is who she claims to be.
 
 To test that claim, we need to hash the newly entered string by precisely the same method that the password string the actual user originally supplied at registration time was hashed.
@@ -98,7 +103,7 @@ else:
 ```
 There are two other exceptions (`VerificationError` and `InvalidHash`) that could be raised by the `verify()` method, but neither of these should be trapped in the `try … except` block, because neither would be informative about whether the newly entered string matches the originally created password. (See the [source code](https://github.com/hynek/argon2-cffi/blob/42282cd88c74197935ec6444c6d2f9497b3b03b3/src/argon2/_password_hasher.py#L192-L197) for more details.) Either of these exceptions would prevent confirmation of a valid password. Thus, either occurring would generate a fatal error, regardless of the validity of the user’s input.
 
-### Progressively upgrade hash quality of previously hashed passwords
+#### Progressively upgrade hash quality of previously hashed passwords
 The third user-facing method of the `PasswordHasher` class is `check_needs_rehash()`. That method’s docstring explains:
 > Whenever your *Argon2* parameters -- or *argon2-cffi*'s defaults! -- change, you should rehash your passwords at the next opportunity. The common approach is to do that whenever a user logs in, since that should be the only time when you have access to the cleartext password.
 
@@ -128,7 +133,7 @@ def login(db, user, cleartext_string_to_compare):
         db.set_password_hash_for_user(user, password_hasher.hash(cleartext_string_to_compare))
 ```
 
-## Choosing parameters
+### Choosing parameters
 See [§ Choosing parameters](https://argon2-cffi.readthedocs.io/en/stable/parameters.html#choosing-parameters) in [Read the Docs](https://argon2-cffi.readthedocs.io/en/latest/index.html).
 
 ## Transcript from running this program with example password
